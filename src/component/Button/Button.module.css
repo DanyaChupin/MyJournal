@@ -1,0 +1,16 @@
+.button {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 26px;
+	border-radius: 6px;
+	padding: 8px 30px;
+	font-family: inherit;
+	cursor: pointer;
+	transition: background var(--transition);
+	border: none;
+	color: var(--color-text);
+	background: var(--color-button-bg);
+}
+.button:hover {
+	background: var(--color-button-bgHover);
+}

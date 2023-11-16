@@ -1,0 +1,14 @@
+:root {
+	--color-bg: #181818;
+	--color-text: #fff;
+	--color-button-bg: #312eb5;
+	--color-button-bgHover: #2a28a2;
+	--transition: 0.25s;
+}
+body {
+	margin: 0;
+	padding: 0;
+	background-color: var(--color-bg);
+	box-sizing: border-box;
+	background-color: rgba(0, 0, 0, 0.904);
+}
