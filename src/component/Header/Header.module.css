@@ -1,0 +1,10 @@
+.header {
+	color: var(--color-text);
+	width: 100%;
+}
+
+.header__logo {
+	margin: 0;
+	width: 179px;
+	margin: 30px 0px;
+}

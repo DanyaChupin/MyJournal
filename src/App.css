@@ -1,0 +1,7 @@
+.layout {
+	max-width: var(--layout);
+	height: 75vh;
+	display: flex;
+	margin: auto;
+	padding: 0px 20px;
+}
