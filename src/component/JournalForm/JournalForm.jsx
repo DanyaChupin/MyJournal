@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react'
+import { useEffect, useReducer, useRef } from 'react'
 import Button from '../Button/Button'
 import cn from 'classnames'
 import styles from './JournalForm.module.css'
@@ -7,14 +7,12 @@ import { INITIAL_STATE, formReducer } from './JournalForm.state'
 const JournalForm = ({ addItem }) => {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE)
 	const { isValid, values, isFormReadyToSubmit } = formState
-	console.log(values)
+	const titleRef = useRef()
 
-	console.log(`isValid ${isValid}`)
-
-	console.log(`isFormReady ${isFormReadyToSubmit}`)
 	useEffect(() => {
 		let timerId
 		if (!isValid) {
+			titleRef.current.focus()
 			timerId = setTimeout(() => {
 				dispatchForm({ type: 'RESET_VALIDITY' })
 			}, 2000)
@@ -29,8 +27,7 @@ const JournalForm = ({ addItem }) => {
 			addItem(values)
 			dispatchForm({ type: 'CLEAR' })
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isFormReadyToSubmit, isValid])
+	}, [addItem, isFormReadyToSubmit, values])
 
 	const onChange = e => {
 		dispatchForm({
@@ -56,6 +53,7 @@ const JournalForm = ({ addItem }) => {
 					<input
 						type='text'
 						name='title'
+						ref={titleRef}
 						placeholder='Название'
 						value={values.title}
 						onChange={onChange}
