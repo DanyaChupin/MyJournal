@@ -1,0 +1,52 @@
+.journal-form {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+.input {
+	background: none;
+	color: var(--color-text);
+	border: none;
+	font-style: 14px;
+}
+.input::selection {
+	background: none;
+}
+.input:focus {
+	outline: none;
+}
+.invalid {
+	border-bottom: 1px solid red;
+}
+.input-title {
+	font-size: 32px;
+	font-weight: 600;
+	line-height: 40px;
+}
+.input__wrapper {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.form-row {
+	display: flex;
+	gap: 60px;
+	align-items: center;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.form-lables__title {
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 18px;
+}
+
+.form-lables {
+	display: flex;
+	padding: 16px 0px;
+	gap: 22px;
+	align-items: center;
+}
+.journal-form > textarea {
+	resize: none;
+	height: 62vh;
+}

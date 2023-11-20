@@ -1,7 +1,11 @@
-import styles from './Button.module.css'
+import './Button.css'
 
-const Button = () => {
-	return <button className={styles.button}>Сохранить</button>
+const Button = ({ onClick }) => {
+	return (
+		<button onClick={onClick} className='button accept'>
+			Сохранить
+		</button>
+	)
 }
 
 export default Button

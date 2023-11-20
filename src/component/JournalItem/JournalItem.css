@@ -1,37 +1,27 @@
-.journalItem {
-	border-radius: 3px;
-	background: rgba(255, 255, 255, 0.03);
-	padding: 20px;
-	transition: background var(--transition) ease;
-	cursor: pointer;
-}
-.journalItem:hover {
-	background: rgba(255, 255, 255, 0.04);
-}
-.journalItem__body {
+.journal-item__body {
 	display: flex;
 	gap: 10px;
 }
-.journalItem__header {
+.journal-item__header {
+	margin: 0px 0px 10px 0px;
 	color: var(--color-text);
 	font-size: 18px;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 28px;
 }
-.journalItem__date {
+.journal-item__date {
 	color: rgba(255, 255, 255, 0.4);
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 }
-.journalItem__text {
+.journal-item__text {
 	color: rgba(255, 255, 255, 0.6);
-
 	font-size: 16px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
-	overflow: hidden;
+	overflow-x: hidden;
 }
