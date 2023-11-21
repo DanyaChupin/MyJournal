@@ -6,7 +6,7 @@ import { INITIAL_STATE, formReducer } from './JournalForm.state'
 import Input from '../Input/Input'
 import { UserContext } from '../../context/user.context'
 
-const JournalForm = ({ addItem }) => {
+const JournalForm = ({ addItem, data }) => {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE)
 	const { isValid, values, isFormReadyToSubmit } = formState
 	const { userId } = useContext(UserContext)
@@ -29,8 +29,9 @@ const JournalForm = ({ addItem }) => {
 		if (isFormReadyToSubmit) {
 			addItem(values)
 			dispatchForm({ type: 'CLEAR' })
+			dispatchForm({ type: 'SET_VALUE', payload: { userId } })
 		}
-	}, [addItem, isFormReadyToSubmit, values])
+	}, [addItem, isFormReadyToSubmit, userId, values])
 	useEffect(() => {
 		dispatchForm({
 			type: 'SET_VALUE',
@@ -48,6 +49,10 @@ const JournalForm = ({ addItem }) => {
 		e.preventDefault()
 		dispatchForm({ type: 'SUBMIT' })
 	}
+
+	useEffect(() => {
+		dispatchForm({ type: 'SET_VALUE', payload: { ...data } })
+	}, [data])
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
