@@ -10,20 +10,13 @@
 	border: none;
 	font-style: 14px;
 }
-.input::selection {
-	background: none;
-}
 .input:focus {
 	outline: none;
 }
 .invalid {
 	border-bottom: 1px solid red;
 }
-.input-title {
-	font-size: 32px;
-	font-weight: 600;
-	line-height: 40px;
-}
+
 .input__wrapper {
 	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 	transition: border-bottom 0.3s ease;

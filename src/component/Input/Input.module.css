@@ -1,0 +1,14 @@
+.input-title {
+	font-size: 32px;
+}
+.input {
+	line-height: 40px;
+	font-weight: 600;
+	background: none;
+	color: var(--color-text);
+	border: none;
+	font-style: 14px;
+}
+.input:focus {
+	outline: none;
+}

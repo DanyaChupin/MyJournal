@@ -3,6 +3,7 @@ import Button from '../Button/Button'
 import cn from 'classnames'
 import styles from './JournalForm.module.css'
 import { INITIAL_STATE, formReducer } from './JournalForm.state'
+import Input from '../Input/Input'
 
 const JournalForm = ({ addItem }) => {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE)
@@ -50,14 +51,13 @@ const JournalForm = ({ addItem }) => {
 						[styles['input__wrapper']]: isValid,
 					})}
 				>
-					<input
-						type='text'
-						name='title'
+					<Input
+						appearence={'title'}
+						type={'text'}
 						ref={titleRef}
+						values={values.title}
 						placeholder='Название'
-						value={values.title}
 						onChange={onChange}
-						className={cn(styles['input-title'], styles['input'])}
 					/>
 				</div>
 				<div className={styles['form-row']}>
@@ -65,13 +65,11 @@ const JournalForm = ({ addItem }) => {
 						<img src='/tag.svg' alt='Метки' />
 						<span className={styles['form-lables__title']}>Метки</span>
 					</label>
-					<input
-						placeholder='Куда относится?'
-						value={values.tag}
+					<Input
+						type={'text'}
+						values={values.tag}
+						placeholder='Тег'
 						onChange={onChange}
-						className={styles['input']}
-						type='text'
-						name='tag'
 					/>
 				</div>
 				<textarea
