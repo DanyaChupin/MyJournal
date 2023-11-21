@@ -9,7 +9,6 @@ const JournalForm = ({ addItem }) => {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE)
 	const { isValid, values, isFormReadyToSubmit } = formState
 	const titleRef = useRef()
-
 	useEffect(() => {
 		let timerId
 		if (!isValid) {
@@ -53,9 +52,10 @@ const JournalForm = ({ addItem }) => {
 				>
 					<Input
 						appearence={'title'}
-						type={'text'}
+						name='title'
+						type='text'
 						ref={titleRef}
-						values={values.title}
+						value={values.title}
 						placeholder='Название'
 						onChange={onChange}
 					/>
@@ -66,8 +66,8 @@ const JournalForm = ({ addItem }) => {
 						<span className={styles['form-lables__title']}>Метки</span>
 					</label>
 					<Input
-						type={'text'}
-						values={values.tag}
+						value={values.tag}
+						name='tag'
 						placeholder='Тег'
 						onChange={onChange}
 					/>

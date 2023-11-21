@@ -3,15 +3,15 @@ import cn from 'classnames'
 import styles from './Input.module.css'
 
 const Input = forwardRef(function Input(
-	{ appearence, type, value, placeholder, onChange, ...props },
+	{ appearence, name, value, placeholder, onChange, ...props },
 	ref
 ) {
 	return (
 		<input
 			{...props}
 			ref={ref}
-			type={type}
-			name='title'
+			type='text'
+			name={name}
 			placeholder={placeholder}
 			value={value}
 			onChange={onChange}
