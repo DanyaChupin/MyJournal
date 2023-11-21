@@ -2,6 +2,7 @@
 export const INITIAL_STATE = {
 	isValid: true,
 	values: {
+		userId: '',
 		title: '',
 		tag: '',
 		text: '',

@@ -3,6 +3,7 @@ import Body from './layout/Body/Body'
 import './App.css'
 import JournalForm from './component/JournalForm/JournalForm'
 import { useLocalStorage } from './hooks/use-localStorage.hook'
+import { UserContextProvider } from './context/user.context'
 
 const mapItems = items => {
 	if (!items) {
@@ -18,6 +19,7 @@ const App = () => {
 	const addItem = item => {
 		setItems([
 			{
+				userId: item.userId,
 				id: items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1,
 				text: item.text,
 				tag: item.tag,
@@ -30,12 +32,14 @@ const App = () => {
 	}
 
 	return (
-		<div className='layout'>
-			<LeftPanel items={mapItems(items)} />
-			<Body>
-				<JournalForm addItem={addItem} />
-			</Body>
-		</div>
+		<UserContextProvider>
+			<div className='layout'>
+				<LeftPanel items={mapItems(items)} />
+				<Body>
+					<JournalForm addItem={addItem} />
+				</Body>
+			</div>
+		</UserContextProvider>
 	)
 }
 
