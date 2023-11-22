@@ -1,18 +1,22 @@
 .journal-item__body {
+	position: relative;
 	display: flex;
+	align-items: center;
 	gap: 10px;
 }
 .journal-item__header {
 	margin: 0px 0px 10px 0px;
 	color: var(--color-text);
 	font-size: 18px;
+	overflow: hidden;
 	font-style: normal;
 	font-weight: 600;
 	line-height: 28px;
 }
 .journal-item__date {
 	color: rgba(255, 255, 255, 0.4);
-	font-size: 16px;
+	font-size: 11px;
+	white-space: nowrap;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
