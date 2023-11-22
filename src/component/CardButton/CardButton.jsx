@@ -1,8 +1,8 @@
 import './CardButton.css'
 
-const CardButton = ({ children, className }) => {
+const CardButton = ({ children, className, ...props }) => {
 	return (
-		<button className={`card-button ${className ? className : ''}`}>
+		<button {...props} className={`card-button ${className ? className : ''}`}>
 			{children}
 		</button>
 	)
