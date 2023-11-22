@@ -3,8 +3,8 @@ import Body from './layout/Body/Body'
 import './App.css'
 import JournalForm from './component/JournalForm/JournalForm'
 import { useLocalStorage } from './hooks/use-localStorage.hook'
-import { UserContextProvider } from './context/user.context'
-import { useState } from 'react'
+import { UserContext } from './context/user.context'
+import { useContext, useEffect, useState } from 'react'
 
 const mapItems = items => {
 	if (!items) {
@@ -12,14 +12,16 @@ const mapItems = items => {
 	}
 	return items.map(i => ({
 		...i,
-		// date: i.date,
 	}))
 }
 const App = () => {
 	const [items, setItems] = useLocalStorage('data')
-	const [selectedItem, setSelectedItem] = useState({})
+	const [selectedItem, setSelectedItem] = useState(null)
+	const { userId } = useContext(UserContext)
+	useEffect(() => {
+		setSelectedItem(null)
+	}, [userId])
 	const addItem = item => {
-		console.log(item)
 		if (!item.id) {
 			setItems([
 				{
@@ -42,16 +44,25 @@ const App = () => {
 			])
 		}
 	}
-
+	const deleteItem = id => {
+		setItems(items.filter(i => i.id !== id))
+		setSelectedItem(null)
+	}
 	return (
-		<UserContextProvider>
-			<div className='layout'>
-				<LeftPanel items={mapItems(items)} setItem={setSelectedItem} />
-				<Body>
-					<JournalForm addItem={addItem} data={selectedItem} />
-				</Body>
-			</div>
-		</UserContextProvider>
+		<div className='layout'>
+			<LeftPanel
+				items={mapItems(items)}
+				clearForm={() => setSelectedItem(null)}
+				setItem={setSelectedItem}
+			/>
+			<Body>
+				<JournalForm
+					addItem={addItem}
+					data={selectedItem}
+					deleteItem={deleteItem}
+				/>
+			</Body>
+		</div>
 	)
 }
 

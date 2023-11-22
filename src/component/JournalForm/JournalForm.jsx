@@ -6,11 +6,19 @@ import { INITIAL_STATE, formReducer } from './JournalForm.state'
 import Input from '../Input/Input'
 import { UserContext } from '../../context/user.context'
 
-const JournalForm = ({ addItem, data }) => {
+const JournalForm = ({ addItem, data, deleteItem }) => {
 	const [formState, dispatchForm] = useReducer(formReducer, INITIAL_STATE)
 	const { isValid, values, isFormReadyToSubmit } = formState
 	const { userId } = useContext(UserContext)
 	const titleRef = useRef()
+
+	useEffect(() => {
+		if (!data) {
+			dispatchForm({ type: 'CLEAR' })
+			dispatchForm({ type: 'SET_VALUE', payload: { userId } })
+		}
+		dispatchForm({ type: 'SET_VALUE', payload: { ...data } })
+	}, [data, userId])
 
 	useEffect(() => {
 		let timerId
@@ -50,14 +58,16 @@ const JournalForm = ({ addItem, data }) => {
 		dispatchForm({ type: 'SUBMIT' })
 	}
 
-	useEffect(() => {
-		dispatchForm({ type: 'SET_VALUE', payload: { ...data } })
-	}, [data])
+	const deleteJournalItem = () => {
+		deleteItem(data.id)
+		dispatchForm({ type: 'CLEAR' })
+		dispatchForm({ type: 'SET_VALUE', payload: { userId } })
+	}
 
 	return (
 		<form className={styles['journal-form']} onSubmit={addJournalItem}>
 			<div
-				className={cn([], {
+				className={cn([styles['journal-form__top-flex']], {
 					[styles['invalid']]: !isValid,
 					[styles['input__wrapper']]: isValid,
 				})}
@@ -71,6 +81,15 @@ const JournalForm = ({ addItem, data }) => {
 					placeholder='Название'
 					onChange={onChange}
 				/>
+				{data?.id && (
+					<button
+						type='button'
+						className={styles['journal-form__delete']}
+						onClick={deleteJournalItem}
+					>
+						<img src='./basket.svg' alt='Корзина' />
+					</button>
+				)}
 			</div>
 			<div className={styles['form-row']}>
 				<label htmlFor='tag' className={styles['form-lables']}>
